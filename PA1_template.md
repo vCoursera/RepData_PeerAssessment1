@@ -5,18 +5,20 @@
 
 
 ```r
-if(!file.exists('Source_Classification_Code.rds') || !file.exists('summarySCC_PM25.rds')){
-# Check if the power consumption zip file already exists in the root directory , if not download it from internet
+if(!file.exists("activity.csv")){
+# Check if the activity zip file already exists in the root directory , if not download it from internet
 
-if(!file.exists('repdata_data_activity.zip')){
+if(!file.exists("repdata_data_activity.zip")){
 
 download.file("https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip","./repdata_data_activity.zip")
 }
 
 #unzip the contents of the downloaded zip file
 unzip("repdata_data_activity.zip")
-activity <- read.csv("activity.csv")
+
 }
+
+activity <- read.csv("activity.csv")
 ativity <- activity[complete.cases(activity),]
 stepscount <- aggregate(steps ~ date, activity, sum)
 ```
